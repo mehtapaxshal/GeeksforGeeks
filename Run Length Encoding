@@ -1,0 +1,42 @@
+/*You are required to complete this function */
+
+char *encode(char *src)
+{     
+  //Your code here 
+  if(src=='\0')
+    return '\0';
+  
+  int len=strlen(src);
+  int i=0,j=0,k=0;
+  char *result= (char *)malloc(sizeof(char)*(len*2 +1));
+  int cnt=1;
+  for(i=0;i<strlen(src);i=j)
+  {
+      cnt=1;
+      for(j=i+1;j<strlen(src);j++)
+      {
+          if(src[i]==src[j])
+          {
+              cnt++;
+          }else
+          {
+              result[k++]=src[i];
+              result[k++]=(char)(cnt+48);
+              break;
+          }
+      }
+    if(j==strlen(src))
+    {
+        result[k++]=src[i];
+        result[k++]=(char)(cnt+48);
+        break;
+    }
+    
+  }
+    
+    result[k]='\0';
+    
+    return result;
+  
+}     
+ 
