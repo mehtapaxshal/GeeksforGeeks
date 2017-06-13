@@ -1,0 +1,101 @@
+/*
+  Reverse a linked list
+  The input list will have at least one element  
+  Return the node which points to the head of the new LinkedList
+  Node is defined as 
+  struct node
+  {
+     int data;
+     struct Node *next;
+  }
+*/
+struct node *reverse (struct node *head, int k)
+{ 
+  // Method 1
+  
+/*  if(head == NULL || head->next == NULL || k <= 0)
+    return head;
+
+  int cnt=0,cnthead=0;
+  struct node *prev = NULL;
+  struct node *prevhead = NULL;
+  struct node *curr = NULL;
+  struct node *nxt = NULL;
+  
+  curr = head;
+  
+  
+  while(curr!=NULL)
+  {
+      
+      while(curr != NULL && cnt<k)
+      {
+          nxt = curr->next;
+          curr->next = prev;
+          prev = curr;
+          curr = nxt;
+          cnt++;
+          cnthead++;
+      }
+      
+      if(curr == NULL && cnthead < k)
+      {
+          head = prev;
+          break;
+      }
+      
+      if(cnthead == k)
+      {
+          head = prev;
+          while(prev->next != NULL)
+            prev = prev->next;
+          prevhead = prev;
+          prev = NULL;
+          cnt = 0;
+          continue;
+      }
+      
+      prevhead->next = prev;
+      prev = NULL;
+      while(prevhead->next!=NULL)
+        prevhead = prevhead->next;
+    
+      cnt=0;
+  }
+  
+  return head;
+  */
+  
+  // Method 2
+  
+  if(head == NULL || head->next == NULL || k <= 0)
+        return head;
+    struct node *next, *prev = NULL;
+    struct node *curr = head;
+    
+    struct node *prevHead = NULL;
+    struct node *thisHead = curr;
+
+    while(curr != NULL)
+    {
+        thisHead = curr;
+        int count = 0;
+        prev = NULL;
+        while(curr != NULL && count < k)
+        {
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+            ++count;
+        }
+
+        if(prevHead != NULL)
+            prevHead->next = prev;
+        else
+            head = prev;
+        prevHead = thisHead;
+    }
+    return head;
+  
+}
